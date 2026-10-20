@@ -34,7 +34,7 @@
     },
     "takeaway": "💡 QA TAKEAWAY:\nIdempotency-Key headers and network retry storms.",
     "author": "World Test Organisation",
-    "done": false
+    "done": true
   },
   {
     "id": "reel_002",
