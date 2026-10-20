@@ -3,36 +3,1849 @@
     "id": "reel_001",
     "title": "THE UPI DOUBLE-CHARGE INCIDENT",
     "scene_1": {
-      "setting": "OFFICE DESK \u2022 11:42 PM",
+      "setting": "OFFICE DESK • SCENARIO 1",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
-      "dialogue": "Priya! Production is double-charging users on UPI retries! Look at Postman, status 200!"
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v2/pay! We need to fix this before release."
     },
     "scene_2": {
       "setting": "POSTMAN API CLIENT SCREEN",
       "speaker": "POSTMAN UI",
       "visual_type": "postman",
       "endpoint": "POST /api/v2/pay",
-      "status": "200 OK (245ms)",
-      "payload": "{\n  \"amount\": 500,\n  \"upi_id\": \"user@ybl\"\n}"
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_001\",\n  \"strict_mode\": true\n}"
     },
     "scene_3": {
       "setting": "OFFICE MEETING ROOM",
       "speaker": "PRIYA",
       "voice": "en-IN-NeerjaNeural",
-      "dialogue": "Status 200 on a single request means nothing! If the client retries on timeout without an Idempotency Key, the gateway charges twice."
+      "dialogue": "That happens because engineers test happy paths only. Idempotency-Key headers and network retry storms."
     },
     "scene_4": {
       "setting": "ARCHITECTURE FLOW ANIMATION",
       "speaker": "PRIYA",
       "visual_type": "architecture",
       "flow": [
-        "Client App -> POST /pay (Timeout)",
-        "Client Retries -> POST /pay (Duplicate!)",
-        "\u274c Result: Customer Charged Twice"
+        "Client Request -> POST /api/v2/pay",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nNever test APIs with status 200 alone. Always validate Idempotency-Key headers and network retry storms.",
+    "takeaway": "💡 QA TAKEAWAY:\nIdempotency-Key headers and network retry storms.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_002",
+    "title": "THE GHOST SESSION BUG",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 2",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/auth/session! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/auth/session",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_002\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. JWT token revocation lists and sliding session expiration validation."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/auth/session",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nJWT token revocation lists and sliding session expiration validation.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_003",
+    "title": "THE CONCURRENT INVENTORY RACE CONDITION",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 3",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/cart/checkout! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/cart/checkout",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_003\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Database row-locking, pessimistic locks, and flash-sale concurrency stress testing."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/cart/checkout",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nDatabase row-locking, pessimistic locks, and flash-sale concurrency stress testing.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_004",
+    "title": "THE PAGINATION OFFSET TRAP",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 4",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/transactions?offset=999999! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/transactions?offset=999999",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_004\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Cursor-based pagination vs offset performance limits on large datasets."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/transactions?offset=999999",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nCursor-based pagination vs offset performance limits on large datasets.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_005",
+    "title": "THE RATE LIMIT BYPASS VULNERABILITY",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 5",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/otp/verify! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/otp/verify",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_005\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Distributed Redis rate limiting and IP-spoofing via X-Forwarded-For headers."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/otp/verify",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nDistributed Redis rate limiting and IP-spoofing via X-Forwarded-For headers.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_006",
+    "title": "THE STALE CACHE OVERWRITE",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 6",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in PUT /api/v1/user/profile! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "PUT /api/v1/user/profile",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_006\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Cache-aside invalidation patterns and Redis TTL race conditions."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> PUT /api/v1/user/profile",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nCache-aside invalidation patterns and Redis TTL race conditions.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_007",
+    "title": "THE SQL INJECTION IN SORT PARAMETERS",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 7",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/products?sort=price;DROP! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/products?sort=price;DROP",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_007\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Parameterized query validation on dynamic ORDER BY clauses."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/products?sort=price;DROP",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nParameterized query validation on dynamic ORDER BY clauses.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_008",
+    "title": "THE CORS WILDCONFIG RISK",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 8",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in OPTIONS /api/v1/secure-data! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "OPTIONS /api/v1/secure-data",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_008\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Access-Control-Allow-Origin wildcard vulnerabilities with credentialed requests."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> OPTIONS /api/v1/secure-data",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nAccess-Control-Allow-Origin wildcard vulnerabilities with credentialed requests.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_009",
+    "title": "THE MEMORY LEAK IN WEBSOCKET POOLS",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 9",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in WS /api/v1/live-feed! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "WS /api/v1/live-feed",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_009\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. WebSocket connection cleanup, heartbeat pings, and dangling socket references."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> WS /api/v1/live-feed",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nWebSocket connection cleanup, heartbeat pings, and dangling socket references.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_010",
+    "title": "THE GHOST CART MERGE CONFLICT",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 10",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/cart/merge! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/cart/merge",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_010\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. State synchronization bugs when anonymous carts merge with authenticated user carts."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/cart/merge",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nState synchronization bugs when anonymous carts merge with authenticated user carts.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_011",
+    "title": "THE NEGATIVE INVENTORY OVERFLOW",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 11",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in PUT /api/v1/inventory/adjust! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "PUT /api/v1/inventory/adjust",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_011\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Unsigned integer underflow handling during stock deduction edge cases."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> PUT /api/v1/inventory/adjust",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nUnsigned integer underflow handling during stock deduction edge cases.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_012",
+    "title": "THE CASCADE DELETE FAILURE",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 12",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in DELETE /api/v1/users/account! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "DELETE /api/v1/users/account",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_012\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Foreign key constraint violations and orphaned child records in microservices."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> DELETE /api/v1/users/account",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nForeign key constraint violations and orphaned child records in microservices.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_013",
+    "title": "THE LARGE PAYLOAD BUFFER OVERFLOW",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 13",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/documents/upload! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/documents/upload",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_013\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Multipart form-data stream parsing limits and server memory exhaustion."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/documents/upload",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nMultipart form-data stream parsing limits and server memory exhaustion.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_014",
+    "title": "THE EXPIRED TOKEN SILENT REFRESH LOOP",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 14",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/auth/refresh! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/auth/refresh",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_014\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Infinite refresh token retry loops causing server CPU spikes."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/auth/refresh",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nInfinite refresh token retry loops causing server CPU spikes.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_015",
+    "title": "THE MISSING CONTENT-TYPE HEADER CRASH",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 15",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/webhook/stripe! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/webhook/stripe",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_015\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Uncaught JSON parsing exceptions on missing Content-Type headers."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/webhook/stripe",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nUncaught JSON parsing exceptions on missing Content-Type headers.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_016",
+    "title": "THE TIMEZONE CONVERSION MISMATCH",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 16",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/reports/daily! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/reports/daily",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_016\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. UTC vs IST database datetime serialization bugs in scheduled reports."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/reports/daily",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nUTC vs IST database datetime serialization bugs in scheduled reports.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_017",
+    "title": "THE PHANTOM READ IN AUDIT LOGS",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 17",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/audit/trail! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/audit/trail",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_017\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Transaction isolation levels (READ COMMITTED vs REPEATABLE READ) in audit queries."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/audit/trail",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nTransaction isolation levels (READ COMMITTED vs REPEATABLE READ) in audit queries.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_018",
+    "title": "THE WEAK HASH SALT REUSE",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 18",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/auth/register! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/auth/register",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_018\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Cryptographic salt uniqueness verification in user password hashing pipelines."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/auth/register",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nCryptographic salt uniqueness verification in user password hashing pipelines.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_019",
+    "title": "THE GRAPHQL QUERY DEPTH ATTACK",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 19",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/graphql! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/graphql",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_019\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Nested query complexity limits and denial of service prevention in GraphQL."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/graphql",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nNested query complexity limits and denial of service prevention in GraphQL.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_020",
+    "title": "THE IDOR IN USER PROFILE DOWNLOAD",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 20",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/users/profile?id=1042! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/users/profile?id=1042",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_020\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Insecure Direct Object References and role-based access control (RBAC) validation."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/users/profile?id=1042",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nInsecure Direct Object References and role-based access control (RBAC) validation.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_021",
+    "title": "THE REDIS CACHE STAMPEDE",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 21",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/catalog/featured! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/catalog/featured",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_021\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Probabilistic early expiration (mutex locks) to prevent cache stampedes under heavy traffic."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/catalog/featured",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nProbabilistic early expiration (mutex locks) to prevent cache stampedes under heavy traffic.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_022",
+    "title": "THE DEADLOCK IN WALLET TRANSFERS",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 22",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/wallet/transfer! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/wallet/transfer",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_022\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Lock acquisition order standardization to eliminate multi-threaded deadlocks."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/wallet/transfer",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nLock acquisition order standardization to eliminate multi-threaded deadlocks.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_023",
+    "title": "THE UNBIASED LOAD BALANCER WEIGHT BUG",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 23",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/health! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/health",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_023\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Round-robin vs least-connection metrics in Kubernetes ingress controllers."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/health",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nRound-robin vs least-connection metrics in Kubernetes ingress controllers.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_024",
+    "title": "THE SSL CERTIFICATE EXPIRY BLINDNESS",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 24",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/payments/gateway! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/payments/gateway",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_024\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Automated TLS expiry monitoring and certificate pinning test automation."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/payments/gateway",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nAutomated TLS expiry monitoring and certificate pinning test automation.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_025",
+    "title": "THE BROKEN OBJECT PROPERTY FILTER",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 25",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/users/me! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/users/me",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_025\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Mass assignment vulnerabilities returning internal sensitive user fields (password_hash)."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/users/me",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nMass assignment vulnerabilities returning internal sensitive user fields (password_hash).",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_026",
+    "title": "THE SLOW DATABASE QUERY TIMEOUT",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 26",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/analytics/export! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/analytics/export",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_026\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Connection pool exhaustion caused by unindexed analytical queries."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/analytics/export",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nConnection pool exhaustion caused by unindexed analytical queries.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_027",
+    "title": "THE BROKEN REDIRECT OPEN URL VULN",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 27",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/auth/login?next=http://evil! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/auth/login?next=http://evil",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_027\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Strict allow-list validation on redirect callback URLs."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/auth/login?next=http://evil",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nStrict allow-list validation on redirect callback URLs.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_028",
+    "title": "THE EXPLICIT NULL POINTER IN JSON PARSING",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 28",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/orders/create! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/orders/create",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_028\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Optional field handling and null safety in deserialization models."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/orders/create",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nOptional field handling and null safety in deserialization models.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_029",
+    "title": "THE MULTI-TENANT DATA LEAK",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 29",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/tenant/settings! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/tenant/settings",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_029\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Tenant isolation validation in shared-database multi-tenant architectures."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/tenant/settings",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nTenant isolation validation in shared-database multi-tenant architectures.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_030",
+    "title": "THE CONCURRENT FILE UPLOAD CORRUPTION",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 30",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/files/upload! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/files/upload",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_030\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Atomic file writing and temporary staging directories during simultaneous uploads."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/files/upload",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nAtomic file writing and temporary staging directories during simultaneous uploads.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_031",
+    "title": "THE API VERSION DEPRECATION BYPASS",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 31",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v0/legacy/users! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v0/legacy/users",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_031\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Deprecation header enforcement and traffic sunsetting verification."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v0/legacy/users",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nDeprecation header enforcement and traffic sunsetting verification.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_032",
+    "title": "THE WEBHOOK SIGNATURE SPOOFING",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 32",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/webhooks/github! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/webhooks/github",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_032\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. HMAC SHA-256 signature verification tests on incoming webhook payloads."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/webhooks/github",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nHMAC SHA-256 signature verification tests on incoming webhook payloads.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_033",
+    "title": "THE CSV INJECTION EXPORT VULN",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 33",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/reports/export.csv! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/reports/export.csv",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_033\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Formula sanitization (=cmd|' /C calc') in spreadsheet CSV exports."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/reports/export.csv",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nFormula sanitization (=cmd|' /C calc') in spreadsheet CSV exports.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_034",
+    "title": "THE GHOST INVOICE DOUBLE-GENERATION",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 34",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/invoices/generate! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/invoices/generate",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_034\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Distributed locks in cron-triggered batch billing operations."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/invoices/generate",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nDistributed locks in cron-triggered batch billing operations.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_035",
+    "title": "THE WEBSOCKET ORIGIN VALIDATION GAP",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 35",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in WS /api/v1/stream! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "WS /api/v1/stream",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_035\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Cross-Site WebSocket Hijacking (CSWSH) prevention via Origin header checks."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> WS /api/v1/stream",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nCross-Site WebSocket Hijacking (CSWSH) prevention via Origin header checks.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_036",
+    "title": "THE CIPHER SUITE VULNERABILITY",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 36",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/secure! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/secure",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_036\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Enforcing TLS 1.3 and disabling weak legacy cipher suites in API gateways."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/secure",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nEnforcing TLS 1.3 and disabling weak legacy cipher suites in API gateways.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_037",
+    "title": "THE CACHE CONTROL NO-STORE OMISSION",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 37",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/user/banking! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/user/banking",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_037\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Preventing sensitive financial data caching in intermediary proxies and browsers."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/user/banking",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nPreventing sensitive financial data caching in intermediary proxies and browsers.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_038",
+    "title": "THE EXPLICIT TRANSACTION ROLLBACK FAILURE",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 38",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/orders/process! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/orders/process",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_038\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Exception handling and rollback verification across distributed microservices (Saga pattern)."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/orders/process",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nException handling and rollback verification across distributed microservices (Saga pattern).",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_039",
+    "title": "THE EXCESSIVE DATA CONSUMPTION BUG",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 39",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/search?q=test! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/search?q=test",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_039\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Payload size optimization and response compression (gzip/brotli) verification."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/search?q=test",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nPayload size optimization and response compression (gzip/brotli) verification.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_040",
+    "title": "THE MISSING HSTS HEADER RISK",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 40",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_040\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Strict-Transport-Security enforcement on production HTTPS endpoints."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nStrict-Transport-Security enforcement on production HTTPS endpoints.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_041",
+    "title": "THE BLIND SSRF IN WEBHOOK TESTER",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 41",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/webhooks/test! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/webhooks/test",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_041\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Server-Side Request Forgery protection against internal IP ranges (169.254.169.254)."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/webhooks/test",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nServer-Side Request Forgery protection against internal IP ranges (169.254.169.254).",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_042",
+    "title": "THE JWT ALGORITHM NONE ATTACK",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 42",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/auth/verify! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/auth/verify",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_042\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Forcing explicit signature algorithm validation (HS256/RS256) in JWT parsers."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/auth/verify",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nForcing explicit signature algorithm validation (HS256/RS256) in JWT parsers.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_043",
+    "title": "THE CONNECTION LEAK IN DB POOLS",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 43",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/products! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/products",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_043\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Ensuring database cursor and connection closure in finally blocks or context managers."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/products",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nEnsuring database cursor and connection closure in finally blocks or context managers.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_044",
+    "title": "THE RACE CONDITION IN COUPON REDEMPTION",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 44",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/coupons/apply! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/coupons/apply",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_044\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Atomic decrement operations in Redis/SQL to prevent single-use coupon reuse."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/coupons/apply",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nAtomic decrement operations in Redis/SQL to prevent single-use coupon reuse.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_045",
+    "title": "THE SCHEMA VALIDATION BYPASS",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 45",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/users! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/users",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_045\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Strict JSON schema validation against unexpected extra properties."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/users",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nStrict JSON schema validation against unexpected extra properties.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_046",
+    "title": "THE UNCAUGHT DATABASE EXCEPTION LEAK",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 46",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/checkout! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/checkout",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_046\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Masking internal SQL error stack traces in production API responses."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/checkout",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nMasking internal SQL error stack traces in production API responses.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_047",
+    "title": "THE LOG INJECTION (CRLF) VULN",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 47",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/logs! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/logs",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_047\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Sanitizing carriage return and line feed characters in server access logs."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/logs",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nSanitizing carriage return and line feed characters in server access logs.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_048",
+    "title": "THE BROKEN AUTHENTICATION TIMING ATTACK",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 48",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/auth/login! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/auth/login",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_048\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Constant-time string comparison algorithms for password and API key verification."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/auth/login",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nConstant-time string comparison algorithms for password and API key verification.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_049",
+    "title": "THE STALE FEATURE FLAG CACHE",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 49",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/features! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "GET /api/v1/features",
+      "status": "200 OK (Timeout Storm)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_049\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Real-time cache invalidation for dynamic feature flag toggles in microservices."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> GET /api/v1/features",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nReal-time cache invalidation for dynamic feature flag toggles in microservices.",
+    "author": "World Test Organisation",
+    "done": false
+  },
+  {
+    "id": "reel_050",
+    "title": "THE IDEMPOTENCY KEY EXPIRATION TRAP",
+    "scene_1": {
+      "setting": "OFFICE DESK • SCENARIO 50",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/payments/charge! We need to fix this before release."
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v1/payments/charge",
+      "status": "500 Internal Error (412ms)",
+      "payload": "{\n  \"action\": \"execute\",\n  \"module\": \"reel_050\",\n  \"strict_mode\": true\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "That happens because engineers test happy paths only. Optimal TTL configuration (e.g., 24 hours) for idempotency cache stores."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client Request -> POST /api/v1/payments/charge",
+        "Concurrency / Validation Failure",
+        "❌ Result: Production Vulnerability / Bug"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nOptimal TTL configuration (e.g., 24 hours) for idempotency cache stores.",
     "author": "World Test Organisation",
     "done": false
   }
