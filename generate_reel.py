@@ -199,7 +199,7 @@ async def build_full_reel(item: dict, final_mp4: Path):
         "-loop", "1", "-i", str(s1_png), "-i", str(s1_audio),
         "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.35:contrast=1.3[bg];[bg][1:v]overlay=0:0:shortest=1[v]",
         "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "ultrafast", "-crf", "21", "-c:a", "aac", "-b:a", "192k",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
         "-t", str(s1_dur), "-pix_fmt", "yuv420p", str(s1_seg)
     ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     segment_videos.append(s1_seg)
@@ -217,7 +217,7 @@ async def build_full_reel(item: dict, final_mp4: Path):
         "-loop", "1", "-i", str(s2_png), "-i", str(s2_audio),
         "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.35:contrast=1.3[bg];[bg][1:v]overlay=0:0:shortest=1[v]",
         "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "ultrafast", "-crf", "21", "-c:a", "aac", "-b:a", "192k",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
         "-t", str(s2_dur), "-pix_fmt", "yuv420p", str(s2_seg)
     ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     segment_videos.append(s2_seg)
@@ -235,7 +235,7 @@ async def build_full_reel(item: dict, final_mp4: Path):
         "-loop", "1", "-i", str(s3_png), "-i", str(s3_audio),
         "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.35:contrast=1.3[bg];[bg][1:v]overlay=0:0:shortest=1[v]",
         "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "ultrafast", "-crf", "21", "-c:a", "aac", "-b:a", "192k",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
         "-t", str(s3_dur), "-pix_fmt", "yuv420p", str(s3_seg)
     ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     segment_videos.append(s3_seg)
@@ -253,7 +253,7 @@ async def build_full_reel(item: dict, final_mp4: Path):
         "-loop", "1", "-i", str(s4_png), "-i", str(s4_audio),
         "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.35:contrast=1.3[bg];[bg][1:v]overlay=0:0:shortest=1[v]",
         "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "ultrafast", "-crf", "21", "-c:a", "aac", "-b:a", "192k",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
         "-t", str(s4_dur), "-pix_fmt", "yuv420p", str(s4_seg)
     ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     segment_videos.append(s4_seg)
@@ -270,7 +270,7 @@ async def build_full_reel(item: dict, final_mp4: Path):
         "-loop", "1", "-i", str(t_png), "-i", str(t_audio),
         "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.35:contrast=1.3[bg];[bg][1:v]overlay=0:0:shortest=1[v]",
         "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "ultrafast", "-crf", "21", "-c:a", "aac", "-b:a", "192k",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
         "-t", str(t_dur), "-pix_fmt", "yuv420p", str(t_seg)
     ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     segment_videos.append(t_seg)
