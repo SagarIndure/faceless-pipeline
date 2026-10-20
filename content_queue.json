@@ -1,0 +1,39 @@
+[
+  {
+    "id": "reel_001",
+    "title": "THE UPI DOUBLE-CHARGE INCIDENT",
+    "scene_1": {
+      "setting": "OFFICE DESK • 11:42 PM",
+      "speaker": "ROHIT",
+      "voice": "en-IN-PrabhatNeural",
+      "dialogue": "Priya! Production is double-charging users on UPI retries! Look at Postman, status 200!"
+    },
+    "scene_2": {
+      "setting": "POSTMAN API CLIENT SCREEN",
+      "speaker": "POSTMAN UI",
+      "visual_type": "postman",
+      "endpoint": "POST /api/v2/pay",
+      "status": "200 OK (245ms)",
+      "payload": "{\n  \"amount\": 500,\n  \"upi_id\": \"user@ybl\"\n}"
+    },
+    "scene_3": {
+      "setting": "OFFICE MEETING ROOM",
+      "speaker": "PRIYA",
+      "voice": "en-IN-NeerjaNeural",
+      "dialogue": "Status 200 on a single request means nothing! If the client retries on timeout without an Idempotency Key, the gateway charges twice."
+    },
+    "scene_4": {
+      "setting": "ARCHITECTURE FLOW ANIMATION",
+      "speaker": "PRIYA",
+      "visual_type": "architecture",
+      "flow": [
+        "Client App -> POST /pay (Timeout)",
+        "Client Retries -> POST /pay (Duplicate!)",
+        "❌ Result: Customer Charged Twice"
+      ]
+    },
+    "takeaway": "💡 QA TAKEAWAY:\nNever test APIs with status 200 alone. Always validate Idempotency-Key headers and network retry storms.",
+    "author": "World Test Organisation",
+    "done": true
+  }
+]
