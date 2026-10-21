@@ -71,7 +71,7 @@
     },
     "takeaway": "💡 QA TAKEAWAY:\nJWT token revocation lists and sliding session expiration validation.",
     "author": "World Test Organisation",
-    "done": false
+    "done": true
   },
   {
     "id": "reel_003",
