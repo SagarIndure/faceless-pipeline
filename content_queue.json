@@ -108,7 +108,7 @@
     },
     "takeaway": "💡 QA TAKEAWAY:\nDatabase row-locking, pessimistic locks, and flash-sale concurrency stress testing.",
     "author": "World Test Organisation",
-    "done": false
+    "done": true
   },
   {
     "id": "reel_004",
