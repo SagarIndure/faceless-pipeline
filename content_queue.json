@@ -182,7 +182,7 @@
     },
     "takeaway": "💡 QA TAKEAWAY:\nDistributed Redis rate limiting and IP-spoofing via X-Forwarded-For headers.",
     "author": "World Test Organisation",
-    "done": false
+    "done": true
   },
   {
     "id": "reel_006",
