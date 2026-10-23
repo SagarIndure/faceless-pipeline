@@ -3,7 +3,7 @@
     "id": "reel_001",
     "title": "THE UPI DOUBLE-CHARGE INCIDENT",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 1",
+      "setting": "OFFICE DESK \u2022 SCENARIO 1",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v2/pay! We need to fix this before release."
@@ -29,10 +29,10 @@
       "flow": [
         "Client Request -> POST /api/v2/pay",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nIdempotency-Key headers and network retry storms.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nIdempotency-Key headers and network retry storms.",
     "author": "World Test Organisation",
     "done": true
   },
@@ -40,7 +40,7 @@
     "id": "reel_002",
     "title": "THE GHOST SESSION BUG",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 2",
+      "setting": "OFFICE DESK \u2022 SCENARIO 2",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/auth/session! We need to fix this before release."
@@ -66,10 +66,10 @@
       "flow": [
         "Client Request -> GET /api/v1/auth/session",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nJWT token revocation lists and sliding session expiration validation.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nJWT token revocation lists and sliding session expiration validation.",
     "author": "World Test Organisation",
     "done": true
   },
@@ -77,7 +77,7 @@
     "id": "reel_003",
     "title": "THE CONCURRENT INVENTORY RACE CONDITION",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 3",
+      "setting": "OFFICE DESK \u2022 SCENARIO 3",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/cart/checkout! We need to fix this before release."
@@ -103,10 +103,10 @@
       "flow": [
         "Client Request -> POST /api/v1/cart/checkout",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nDatabase row-locking, pessimistic locks, and flash-sale concurrency stress testing.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nDatabase row-locking, pessimistic locks, and flash-sale concurrency stress testing.",
     "author": "World Test Organisation",
     "done": true
   },
@@ -114,7 +114,7 @@
     "id": "reel_004",
     "title": "THE PAGINATION OFFSET TRAP",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 4",
+      "setting": "OFFICE DESK \u2022 SCENARIO 4",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/transactions?offset=999999! We need to fix this before release."
@@ -140,10 +140,10 @@
       "flow": [
         "Client Request -> GET /api/v1/transactions?offset=999999",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nCursor-based pagination vs offset performance limits on large datasets.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nCursor-based pagination vs offset performance limits on large datasets.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -151,7 +151,7 @@
     "id": "reel_005",
     "title": "THE RATE LIMIT BYPASS VULNERABILITY",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 5",
+      "setting": "OFFICE DESK \u2022 SCENARIO 5",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/otp/verify! We need to fix this before release."
@@ -177,10 +177,10 @@
       "flow": [
         "Client Request -> POST /api/v1/otp/verify",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nDistributed Redis rate limiting and IP-spoofing via X-Forwarded-For headers.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nDistributed Redis rate limiting and IP-spoofing via X-Forwarded-For headers.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -188,7 +188,7 @@
     "id": "reel_006",
     "title": "THE STALE CACHE OVERWRITE",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 6",
+      "setting": "OFFICE DESK \u2022 SCENARIO 6",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in PUT /api/v1/user/profile! We need to fix this before release."
@@ -214,10 +214,10 @@
       "flow": [
         "Client Request -> PUT /api/v1/user/profile",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nCache-aside invalidation patterns and Redis TTL race conditions.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nCache-aside invalidation patterns and Redis TTL race conditions.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -225,7 +225,7 @@
     "id": "reel_007",
     "title": "THE SQL INJECTION IN SORT PARAMETERS",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 7",
+      "setting": "OFFICE DESK \u2022 SCENARIO 7",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/products?sort=price;DROP! We need to fix this before release."
@@ -251,10 +251,10 @@
       "flow": [
         "Client Request -> GET /api/v1/products?sort=price;DROP",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nParameterized query validation on dynamic ORDER BY clauses.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nParameterized query validation on dynamic ORDER BY clauses.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -262,7 +262,7 @@
     "id": "reel_008",
     "title": "THE CORS WILDCONFIG RISK",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 8",
+      "setting": "OFFICE DESK \u2022 SCENARIO 8",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in OPTIONS /api/v1/secure-data! We need to fix this before release."
@@ -288,10 +288,10 @@
       "flow": [
         "Client Request -> OPTIONS /api/v1/secure-data",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nAccess-Control-Allow-Origin wildcard vulnerabilities with credentialed requests.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nAccess-Control-Allow-Origin wildcard vulnerabilities with credentialed requests.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -299,7 +299,7 @@
     "id": "reel_009",
     "title": "THE MEMORY LEAK IN WEBSOCKET POOLS",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 9",
+      "setting": "OFFICE DESK \u2022 SCENARIO 9",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in WS /api/v1/live-feed! We need to fix this before release."
@@ -325,10 +325,10 @@
       "flow": [
         "Client Request -> WS /api/v1/live-feed",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nWebSocket connection cleanup, heartbeat pings, and dangling socket references.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nWebSocket connection cleanup, heartbeat pings, and dangling socket references.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -336,7 +336,7 @@
     "id": "reel_010",
     "title": "THE GHOST CART MERGE CONFLICT",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 10",
+      "setting": "OFFICE DESK \u2022 SCENARIO 10",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/cart/merge! We need to fix this before release."
@@ -362,10 +362,10 @@
       "flow": [
         "Client Request -> POST /api/v1/cart/merge",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nState synchronization bugs when anonymous carts merge with authenticated user carts.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nState synchronization bugs when anonymous carts merge with authenticated user carts.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -373,7 +373,7 @@
     "id": "reel_011",
     "title": "THE NEGATIVE INVENTORY OVERFLOW",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 11",
+      "setting": "OFFICE DESK \u2022 SCENARIO 11",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in PUT /api/v1/inventory/adjust! We need to fix this before release."
@@ -399,10 +399,10 @@
       "flow": [
         "Client Request -> PUT /api/v1/inventory/adjust",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nUnsigned integer underflow handling during stock deduction edge cases.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nUnsigned integer underflow handling during stock deduction edge cases.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -410,7 +410,7 @@
     "id": "reel_012",
     "title": "THE CASCADE DELETE FAILURE",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 12",
+      "setting": "OFFICE DESK \u2022 SCENARIO 12",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in DELETE /api/v1/users/account! We need to fix this before release."
@@ -436,10 +436,10 @@
       "flow": [
         "Client Request -> DELETE /api/v1/users/account",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nForeign key constraint violations and orphaned child records in microservices.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nForeign key constraint violations and orphaned child records in microservices.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -447,7 +447,7 @@
     "id": "reel_013",
     "title": "THE LARGE PAYLOAD BUFFER OVERFLOW",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 13",
+      "setting": "OFFICE DESK \u2022 SCENARIO 13",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/documents/upload! We need to fix this before release."
@@ -473,10 +473,10 @@
       "flow": [
         "Client Request -> POST /api/v1/documents/upload",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nMultipart form-data stream parsing limits and server memory exhaustion.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nMultipart form-data stream parsing limits and server memory exhaustion.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -484,7 +484,7 @@
     "id": "reel_014",
     "title": "THE EXPIRED TOKEN SILENT REFRESH LOOP",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 14",
+      "setting": "OFFICE DESK \u2022 SCENARIO 14",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/auth/refresh! We need to fix this before release."
@@ -510,10 +510,10 @@
       "flow": [
         "Client Request -> POST /api/v1/auth/refresh",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nInfinite refresh token retry loops causing server CPU spikes.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nInfinite refresh token retry loops causing server CPU spikes.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -521,7 +521,7 @@
     "id": "reel_015",
     "title": "THE MISSING CONTENT-TYPE HEADER CRASH",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 15",
+      "setting": "OFFICE DESK \u2022 SCENARIO 15",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/webhook/stripe! We need to fix this before release."
@@ -547,10 +547,10 @@
       "flow": [
         "Client Request -> POST /api/v1/webhook/stripe",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nUncaught JSON parsing exceptions on missing Content-Type headers.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nUncaught JSON parsing exceptions on missing Content-Type headers.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -558,7 +558,7 @@
     "id": "reel_016",
     "title": "THE TIMEZONE CONVERSION MISMATCH",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 16",
+      "setting": "OFFICE DESK \u2022 SCENARIO 16",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/reports/daily! We need to fix this before release."
@@ -584,10 +584,10 @@
       "flow": [
         "Client Request -> GET /api/v1/reports/daily",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nUTC vs IST database datetime serialization bugs in scheduled reports.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nUTC vs IST database datetime serialization bugs in scheduled reports.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -595,7 +595,7 @@
     "id": "reel_017",
     "title": "THE PHANTOM READ IN AUDIT LOGS",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 17",
+      "setting": "OFFICE DESK \u2022 SCENARIO 17",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/audit/trail! We need to fix this before release."
@@ -621,10 +621,10 @@
       "flow": [
         "Client Request -> GET /api/v1/audit/trail",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nTransaction isolation levels (READ COMMITTED vs REPEATABLE READ) in audit queries.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nTransaction isolation levels (READ COMMITTED vs REPEATABLE READ) in audit queries.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -632,7 +632,7 @@
     "id": "reel_018",
     "title": "THE WEAK HASH SALT REUSE",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 18",
+      "setting": "OFFICE DESK \u2022 SCENARIO 18",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/auth/register! We need to fix this before release."
@@ -658,10 +658,10 @@
       "flow": [
         "Client Request -> POST /api/v1/auth/register",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nCryptographic salt uniqueness verification in user password hashing pipelines.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nCryptographic salt uniqueness verification in user password hashing pipelines.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -669,7 +669,7 @@
     "id": "reel_019",
     "title": "THE GRAPHQL QUERY DEPTH ATTACK",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 19",
+      "setting": "OFFICE DESK \u2022 SCENARIO 19",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/graphql! We need to fix this before release."
@@ -695,10 +695,10 @@
       "flow": [
         "Client Request -> POST /api/v1/graphql",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nNested query complexity limits and denial of service prevention in GraphQL.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nNested query complexity limits and denial of service prevention in GraphQL.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -706,7 +706,7 @@
     "id": "reel_020",
     "title": "THE IDOR IN USER PROFILE DOWNLOAD",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 20",
+      "setting": "OFFICE DESK \u2022 SCENARIO 20",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/users/profile?id=1042! We need to fix this before release."
@@ -732,10 +732,10 @@
       "flow": [
         "Client Request -> GET /api/v1/users/profile?id=1042",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nInsecure Direct Object References and role-based access control (RBAC) validation.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nInsecure Direct Object References and role-based access control (RBAC) validation.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -743,7 +743,7 @@
     "id": "reel_021",
     "title": "THE REDIS CACHE STAMPEDE",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 21",
+      "setting": "OFFICE DESK \u2022 SCENARIO 21",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/catalog/featured! We need to fix this before release."
@@ -769,10 +769,10 @@
       "flow": [
         "Client Request -> GET /api/v1/catalog/featured",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nProbabilistic early expiration (mutex locks) to prevent cache stampedes under heavy traffic.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nProbabilistic early expiration (mutex locks) to prevent cache stampedes under heavy traffic.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -780,7 +780,7 @@
     "id": "reel_022",
     "title": "THE DEADLOCK IN WALLET TRANSFERS",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 22",
+      "setting": "OFFICE DESK \u2022 SCENARIO 22",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/wallet/transfer! We need to fix this before release."
@@ -806,10 +806,10 @@
       "flow": [
         "Client Request -> POST /api/v1/wallet/transfer",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nLock acquisition order standardization to eliminate multi-threaded deadlocks.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nLock acquisition order standardization to eliminate multi-threaded deadlocks.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -817,7 +817,7 @@
     "id": "reel_023",
     "title": "THE UNBIASED LOAD BALANCER WEIGHT BUG",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 23",
+      "setting": "OFFICE DESK \u2022 SCENARIO 23",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/health! We need to fix this before release."
@@ -843,10 +843,10 @@
       "flow": [
         "Client Request -> GET /api/v1/health",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nRound-robin vs least-connection metrics in Kubernetes ingress controllers.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nRound-robin vs least-connection metrics in Kubernetes ingress controllers.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -854,7 +854,7 @@
     "id": "reel_024",
     "title": "THE SSL CERTIFICATE EXPIRY BLINDNESS",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 24",
+      "setting": "OFFICE DESK \u2022 SCENARIO 24",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/payments/gateway! We need to fix this before release."
@@ -880,10 +880,10 @@
       "flow": [
         "Client Request -> GET /api/v1/payments/gateway",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nAutomated TLS expiry monitoring and certificate pinning test automation.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nAutomated TLS expiry monitoring and certificate pinning test automation.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -891,7 +891,7 @@
     "id": "reel_025",
     "title": "THE BROKEN OBJECT PROPERTY FILTER",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 25",
+      "setting": "OFFICE DESK \u2022 SCENARIO 25",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/users/me! We need to fix this before release."
@@ -917,10 +917,10 @@
       "flow": [
         "Client Request -> GET /api/v1/users/me",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nMass assignment vulnerabilities returning internal sensitive user fields (password_hash).",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nMass assignment vulnerabilities returning internal sensitive user fields (password_hash).",
     "author": "World Test Organisation",
     "done": false
   },
@@ -928,7 +928,7 @@
     "id": "reel_026",
     "title": "THE SLOW DATABASE QUERY TIMEOUT",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 26",
+      "setting": "OFFICE DESK \u2022 SCENARIO 26",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/analytics/export! We need to fix this before release."
@@ -954,10 +954,10 @@
       "flow": [
         "Client Request -> GET /api/v1/analytics/export",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nConnection pool exhaustion caused by unindexed analytical queries.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nConnection pool exhaustion caused by unindexed analytical queries.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -965,7 +965,7 @@
     "id": "reel_027",
     "title": "THE BROKEN REDIRECT OPEN URL VULN",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 27",
+      "setting": "OFFICE DESK \u2022 SCENARIO 27",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/auth/login?next=http://evil! We need to fix this before release."
@@ -991,10 +991,10 @@
       "flow": [
         "Client Request -> GET /api/v1/auth/login?next=http://evil",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nStrict allow-list validation on redirect callback URLs.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nStrict allow-list validation on redirect callback URLs.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1002,7 +1002,7 @@
     "id": "reel_028",
     "title": "THE EXPLICIT NULL POINTER IN JSON PARSING",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 28",
+      "setting": "OFFICE DESK \u2022 SCENARIO 28",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/orders/create! We need to fix this before release."
@@ -1028,10 +1028,10 @@
       "flow": [
         "Client Request -> POST /api/v1/orders/create",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nOptional field handling and null safety in deserialization models.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nOptional field handling and null safety in deserialization models.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1039,7 +1039,7 @@
     "id": "reel_029",
     "title": "THE MULTI-TENANT DATA LEAK",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 29",
+      "setting": "OFFICE DESK \u2022 SCENARIO 29",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/tenant/settings! We need to fix this before release."
@@ -1065,10 +1065,10 @@
       "flow": [
         "Client Request -> GET /api/v1/tenant/settings",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nTenant isolation validation in shared-database multi-tenant architectures.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nTenant isolation validation in shared-database multi-tenant architectures.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1076,7 +1076,7 @@
     "id": "reel_030",
     "title": "THE CONCURRENT FILE UPLOAD CORRUPTION",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 30",
+      "setting": "OFFICE DESK \u2022 SCENARIO 30",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/files/upload! We need to fix this before release."
@@ -1102,10 +1102,10 @@
       "flow": [
         "Client Request -> POST /api/v1/files/upload",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nAtomic file writing and temporary staging directories during simultaneous uploads.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nAtomic file writing and temporary staging directories during simultaneous uploads.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1113,7 +1113,7 @@
     "id": "reel_031",
     "title": "THE API VERSION DEPRECATION BYPASS",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 31",
+      "setting": "OFFICE DESK \u2022 SCENARIO 31",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v0/legacy/users! We need to fix this before release."
@@ -1139,10 +1139,10 @@
       "flow": [
         "Client Request -> GET /api/v0/legacy/users",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nDeprecation header enforcement and traffic sunsetting verification.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nDeprecation header enforcement and traffic sunsetting verification.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1150,7 +1150,7 @@
     "id": "reel_032",
     "title": "THE WEBHOOK SIGNATURE SPOOFING",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 32",
+      "setting": "OFFICE DESK \u2022 SCENARIO 32",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/webhooks/github! We need to fix this before release."
@@ -1176,10 +1176,10 @@
       "flow": [
         "Client Request -> POST /api/v1/webhooks/github",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nHMAC SHA-256 signature verification tests on incoming webhook payloads.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nHMAC SHA-256 signature verification tests on incoming webhook payloads.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1187,7 +1187,7 @@
     "id": "reel_033",
     "title": "THE CSV INJECTION EXPORT VULN",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 33",
+      "setting": "OFFICE DESK \u2022 SCENARIO 33",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/reports/export.csv! We need to fix this before release."
@@ -1213,10 +1213,10 @@
       "flow": [
         "Client Request -> GET /api/v1/reports/export.csv",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nFormula sanitization (=cmd|' /C calc') in spreadsheet CSV exports.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nFormula sanitization (=cmd|' /C calc') in spreadsheet CSV exports.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1224,7 +1224,7 @@
     "id": "reel_034",
     "title": "THE GHOST INVOICE DOUBLE-GENERATION",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 34",
+      "setting": "OFFICE DESK \u2022 SCENARIO 34",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/invoices/generate! We need to fix this before release."
@@ -1250,10 +1250,10 @@
       "flow": [
         "Client Request -> POST /api/v1/invoices/generate",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nDistributed locks in cron-triggered batch billing operations.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nDistributed locks in cron-triggered batch billing operations.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1261,7 +1261,7 @@
     "id": "reel_035",
     "title": "THE WEBSOCKET ORIGIN VALIDATION GAP",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 35",
+      "setting": "OFFICE DESK \u2022 SCENARIO 35",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in WS /api/v1/stream! We need to fix this before release."
@@ -1287,10 +1287,10 @@
       "flow": [
         "Client Request -> WS /api/v1/stream",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nCross-Site WebSocket Hijacking (CSWSH) prevention via Origin header checks.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nCross-Site WebSocket Hijacking (CSWSH) prevention via Origin header checks.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1298,7 +1298,7 @@
     "id": "reel_036",
     "title": "THE CIPHER SUITE VULNERABILITY",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 36",
+      "setting": "OFFICE DESK \u2022 SCENARIO 36",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/secure! We need to fix this before release."
@@ -1324,10 +1324,10 @@
       "flow": [
         "Client Request -> GET /api/v1/secure",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nEnforcing TLS 1.3 and disabling weak legacy cipher suites in API gateways.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nEnforcing TLS 1.3 and disabling weak legacy cipher suites in API gateways.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1335,7 +1335,7 @@
     "id": "reel_037",
     "title": "THE CACHE CONTROL NO-STORE OMISSION",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 37",
+      "setting": "OFFICE DESK \u2022 SCENARIO 37",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/user/banking! We need to fix this before release."
@@ -1361,10 +1361,10 @@
       "flow": [
         "Client Request -> GET /api/v1/user/banking",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nPreventing sensitive financial data caching in intermediary proxies and browsers.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nPreventing sensitive financial data caching in intermediary proxies and browsers.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1372,7 +1372,7 @@
     "id": "reel_038",
     "title": "THE EXPLICIT TRANSACTION ROLLBACK FAILURE",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 38",
+      "setting": "OFFICE DESK \u2022 SCENARIO 38",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/orders/process! We need to fix this before release."
@@ -1398,10 +1398,10 @@
       "flow": [
         "Client Request -> POST /api/v1/orders/process",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nException handling and rollback verification across distributed microservices (Saga pattern).",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nException handling and rollback verification across distributed microservices (Saga pattern).",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1409,7 +1409,7 @@
     "id": "reel_039",
     "title": "THE EXCESSIVE DATA CONSUMPTION BUG",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 39",
+      "setting": "OFFICE DESK \u2022 SCENARIO 39",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/search?q=test! We need to fix this before release."
@@ -1435,10 +1435,10 @@
       "flow": [
         "Client Request -> GET /api/v1/search?q=test",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nPayload size optimization and response compression (gzip/brotli) verification.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nPayload size optimization and response compression (gzip/brotli) verification.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1446,7 +1446,7 @@
     "id": "reel_040",
     "title": "THE MISSING HSTS HEADER RISK",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 40",
+      "setting": "OFFICE DESK \u2022 SCENARIO 40",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/! We need to fix this before release."
@@ -1472,10 +1472,10 @@
       "flow": [
         "Client Request -> GET /api/v1/",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nStrict-Transport-Security enforcement on production HTTPS endpoints.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nStrict-Transport-Security enforcement on production HTTPS endpoints.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1483,7 +1483,7 @@
     "id": "reel_041",
     "title": "THE BLIND SSRF IN WEBHOOK TESTER",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 41",
+      "setting": "OFFICE DESK \u2022 SCENARIO 41",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/webhooks/test! We need to fix this before release."
@@ -1509,10 +1509,10 @@
       "flow": [
         "Client Request -> POST /api/v1/webhooks/test",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nServer-Side Request Forgery protection against internal IP ranges (169.254.169.254).",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nServer-Side Request Forgery protection against internal IP ranges (169.254.169.254).",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1520,7 +1520,7 @@
     "id": "reel_042",
     "title": "THE JWT ALGORITHM NONE ATTACK",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 42",
+      "setting": "OFFICE DESK \u2022 SCENARIO 42",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/auth/verify! We need to fix this before release."
@@ -1546,10 +1546,10 @@
       "flow": [
         "Client Request -> POST /api/v1/auth/verify",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nForcing explicit signature algorithm validation (HS256/RS256) in JWT parsers.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nForcing explicit signature algorithm validation (HS256/RS256) in JWT parsers.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1557,7 +1557,7 @@
     "id": "reel_043",
     "title": "THE CONNECTION LEAK IN DB POOLS",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 43",
+      "setting": "OFFICE DESK \u2022 SCENARIO 43",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/products! We need to fix this before release."
@@ -1583,10 +1583,10 @@
       "flow": [
         "Client Request -> GET /api/v1/products",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nEnsuring database cursor and connection closure in finally blocks or context managers.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nEnsuring database cursor and connection closure in finally blocks or context managers.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1594,7 +1594,7 @@
     "id": "reel_044",
     "title": "THE RACE CONDITION IN COUPON REDEMPTION",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 44",
+      "setting": "OFFICE DESK \u2022 SCENARIO 44",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/coupons/apply! We need to fix this before release."
@@ -1620,10 +1620,10 @@
       "flow": [
         "Client Request -> POST /api/v1/coupons/apply",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nAtomic decrement operations in Redis/SQL to prevent single-use coupon reuse.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nAtomic decrement operations in Redis/SQL to prevent single-use coupon reuse.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1631,7 +1631,7 @@
     "id": "reel_045",
     "title": "THE SCHEMA VALIDATION BYPASS",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 45",
+      "setting": "OFFICE DESK \u2022 SCENARIO 45",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/users! We need to fix this before release."
@@ -1657,10 +1657,10 @@
       "flow": [
         "Client Request -> POST /api/v1/users",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nStrict JSON schema validation against unexpected extra properties.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nStrict JSON schema validation against unexpected extra properties.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1668,7 +1668,7 @@
     "id": "reel_046",
     "title": "THE UNCAUGHT DATABASE EXCEPTION LEAK",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 46",
+      "setting": "OFFICE DESK \u2022 SCENARIO 46",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/checkout! We need to fix this before release."
@@ -1694,10 +1694,10 @@
       "flow": [
         "Client Request -> POST /api/v1/checkout",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nMasking internal SQL error stack traces in production API responses.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nMasking internal SQL error stack traces in production API responses.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1705,7 +1705,7 @@
     "id": "reel_047",
     "title": "THE LOG INJECTION (CRLF) VULN",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 47",
+      "setting": "OFFICE DESK \u2022 SCENARIO 47",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/logs! We need to fix this before release."
@@ -1731,10 +1731,10 @@
       "flow": [
         "Client Request -> POST /api/v1/logs",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nSanitizing carriage return and line feed characters in server access logs.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nSanitizing carriage return and line feed characters in server access logs.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1742,7 +1742,7 @@
     "id": "reel_048",
     "title": "THE BROKEN AUTHENTICATION TIMING ATTACK",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 48",
+      "setting": "OFFICE DESK \u2022 SCENARIO 48",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/auth/login! We need to fix this before release."
@@ -1768,10 +1768,10 @@
       "flow": [
         "Client Request -> POST /api/v1/auth/login",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nConstant-time string comparison algorithms for password and API key verification.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nConstant-time string comparison algorithms for password and API key verification.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1779,7 +1779,7 @@
     "id": "reel_049",
     "title": "THE STALE FEATURE FLAG CACHE",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 49",
+      "setting": "OFFICE DESK \u2022 SCENARIO 49",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in GET /api/v1/features! We need to fix this before release."
@@ -1805,10 +1805,10 @@
       "flow": [
         "Client Request -> GET /api/v1/features",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nReal-time cache invalidation for dynamic feature flag toggles in microservices.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nReal-time cache invalidation for dynamic feature flag toggles in microservices.",
     "author": "World Test Organisation",
     "done": false
   },
@@ -1816,7 +1816,7 @@
     "id": "reel_050",
     "title": "THE IDEMPOTENCY KEY EXPIRATION TRAP",
     "scene_1": {
-      "setting": "OFFICE DESK • SCENARIO 50",
+      "setting": "OFFICE DESK \u2022 SCENARIO 50",
       "speaker": "ROHIT",
       "voice": "en-IN-PrabhatNeural",
       "dialogue": "Priya! Our telemetry just caught a critical flaw in POST /api/v1/payments/charge! We need to fix this before release."
@@ -1842,10 +1842,10 @@
       "flow": [
         "Client Request -> POST /api/v1/payments/charge",
         "Concurrency / Validation Failure",
-        "❌ Result: Production Vulnerability / Bug"
+        "\u274c Result: Production Vulnerability / Bug"
       ]
     },
-    "takeaway": "💡 QA TAKEAWAY:\nOptimal TTL configuration (e.g., 24 hours) for idempotency cache stores.",
+    "takeaway": "\ud83d\udca1 QA TAKEAWAY:\nOptimal TTL configuration (e.g., 24 hours) for idempotency cache stores.",
     "author": "World Test Organisation",
     "done": false
   }
