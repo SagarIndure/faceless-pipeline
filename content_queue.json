@@ -219,7 +219,7 @@
     },
     "takeaway": "💡 QA TAKEAWAY:\nCache-aside invalidation patterns and Redis TTL race conditions.",
     "author": "World Test Organisation",
-    "done": false
+    "done": true
   },
   {
     "id": "reel_007",
