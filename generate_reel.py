@@ -6,6 +6,8 @@ import textwrap
 from pathlib import Path
 import edge_tts
 import requests
+import cv2
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 QUEUE_FILE = Path("content_queue.json")
@@ -26,6 +28,7 @@ def get_font(size: int):
         "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
         "/System/Library/Fonts/Helvetica.ttc",
         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
     ]
     for p in candidates:
         if os.path.exists(p):
@@ -46,50 +49,56 @@ def get_duration(media_path: Path) -> float:
     res = subprocess.run(cmd, capture_output=True, text=True, check=True)
     return float(res.stdout.strip())
 
-def draw_office_scene(setting: str, speaker_name: str, avatar_color: tuple, dialogue: str, out_png: Path):
-    W, H = 1080, 1920
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
+def ease_out_quad(t):
+    return t * (2 - t)
 
+def draw_animated_office(img, progress, setting, speaker_name, avatar_color, dialogue):
+    W, H = 1080, 1920
+    draw = ImageDraw.Draw(img)
     f_tag = get_font(34)
     f_name = get_font(48)
     f_dialogue = get_font(50)
+
+    # Smooth entrance offset using ease-out
+    slide_offset = int((1.0 - ease_out_quad(min(1.0, progress * 2.5))) * 150)
 
     # Top glow indicator
     draw.rectangle([(0, 0), (W, 18)], fill=(0, 229, 255, 255))
 
     # Setting Badge
-    draw.rounded_rectangle([(W/2 - 360, 80), (W/2 + 360, 160)], radius=30, fill=(10, 15, 30, 245), outline=(56, 189, 248, 240), width=4)
-    draw.text((W/2, 120), f"⚡ {setting}", font=f_tag, fill=(0, 229, 255, 255), anchor="mm")
+    draw.rounded_rectangle([(W/2 - 360, 80 + slide_offset), (W/2 + 360, 160 + slide_offset)], radius=30, fill=(10, 15, 30, 245), outline=(56, 189, 248, 240), width=4)
+    draw.text((W/2, 120 + slide_offset), f"⚡ {setting}", font=f_tag, fill=(0, 229, 255, 255), anchor="mm")
 
     # Speaker Card with Neon Glow
-    draw.rounded_rectangle([(70, 260), (W - 70, 1040)], radius=48, fill=(15, 23, 42, 250), outline=avatar_color, width=6)
-    draw.ellipse([(W/2 - 120, 360), (W/2 + 120, 600)], fill=avatar_color)
-    draw.text((W/2, 480), "🧑‍💻" if "ROHIT" in speaker_name else "👩‍💻", font=get_font(96), anchor="mm")
-    draw.text((W/2, 680), speaker_name, font=f_name, fill=(255, 255, 255, 255), anchor="mm")
-    draw.text((W/2, 760), "World Test Organisation • Live Incident Trace", font=f_tag, fill=(148, 163, 184, 255), anchor="mm")
+    card_y = 260 + int(slide_offset * 0.5)
+    draw.rounded_rectangle([(70, card_y), (W - 70, card_y + 780)], radius=48, fill=(15, 23, 42, 255), outline=avatar_color, width=6)
+    draw.ellipse([(W/2 - 120, card_y + 90), (W/2 + 120, card_y + 330)], fill=avatar_color)
+    draw.text((W/2, card_y + 210), "🧑‍💻" if "ROHIT" in speaker_name else "👩‍💻", font=get_font(96), anchor="mm")
+    draw.text((W/2, card_y + 420), speaker_name, font=f_name, fill=(255, 255, 255, 255), anchor="mm")
+    draw.text((W/2, card_y + 500), "World Test Organisation • Live Incident Trace", font=f_tag, fill=(148, 163, 184, 255), anchor="mm")
 
-    # Dialogue Card (Glassmorphism with strong contrast)
-    draw.rounded_rectangle([(60, 1140), (W - 60, 1820)], radius=40, fill=(20, 30, 50, 250), outline=(255, 255, 255, 150), width=3)
-    wrapped = textwrap.wrap(dialogue, width=25)
-    sy = 1240
+    # Dialogue Card with Typewriter Effect
+    dialogue_y = 1140
+    draw.rounded_rectangle([(60, dialogue_y), (W - 60, dialogue_y + 680)], radius=40, fill=(20, 30, 50, 255), outline=(255, 255, 255, 150), width=3)
+    
+    # Typewriter character reveal based on progress
+    chars_to_show = int(len(dialogue) * min(1.0, progress * 1.5))
+    current_text = dialogue[:chars_to_show] + ("|" if int(progress * 20) % 2 == 0 else "")
+    
+    wrapped = textwrap.wrap(current_text, width=25)
+    sy = dialogue_y + 90
     for line in wrapped:
         draw.text((W/2, sy), line, font=f_dialogue, fill=(255, 255, 255, 255), anchor="mm", align="center")
         sy += 74
 
-    img.save(out_png, "PNG")
-
-def draw_postman_scene(scene_data: dict, out_png: Path):
+def draw_animated_postman(img, progress, scene_data):
     W, H = 1080, 1920
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
-
     f_title = get_font(36)
     f_code = get_font(34)
     f_ui = get_font(30)
 
     draw.rectangle([(0, 0), (W, 18)], fill=(255, 115, 0, 255))
-
     draw.rounded_rectangle([(40, 70), (W - 40, 1850)], radius=30, fill=(18, 18, 18, 255), outline=(255, 115, 0, 240), width=4)
     draw.rounded_rectangle([(40, 70), (W - 40, 160)], radius=30, fill=(35, 35, 35, 255))
     draw.text((80, 115), "📭 Postman API Studio - Live Debugger", font=f_title, fill=(255, 115, 0, 255))
@@ -119,39 +128,30 @@ def draw_postman_scene(scene_data: dict, out_png: Path):
         draw.text((100, ry), line, font=f_code, fill=(206, 145, 120, 255))
         ry += 48
 
-    img.save(out_png, "PNG")
-
-def draw_architecture_scene(flow_steps: list, out_png: Path):
+def draw_animated_architecture(img, progress, flow_steps):
     W, H = 1080, 1920
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
-
     f_title = get_font(40)
     f_step = get_font(36)
 
     draw.rectangle([(0, 0), (W, 18)], fill=(255, 69, 58, 255))
-
-    draw.rounded_rectangle([(60, 100), (W - 60, 240)], radius=30, fill=(15, 23, 42, 250), outline=(255, 69, 58, 240), width=4)
+    draw.rounded_rectangle([(60, 100), (W - 60, 240)], radius=30, fill=(15, 23, 42, 255), outline=(255, 69, 58, 240), width=4)
     draw.text((W/2, 170), "⚡ ARCHITECTURE VULNERABILITY FLOW", font=f_title, fill=(255, 69, 58, 255), anchor="mm")
 
     y_pos = 320
     for i, step in enumerate(flow_steps):
-        box_col = (239, 68, 68, 240) if "❌" in step else (30, 41, 59, 250)
+        box_col = (239, 68, 68, 255) if "❌" in step else (30, 41, 59, 255)
         draw.rounded_rectangle([(70, y_pos), (W - 70, y_pos + 270)], radius=36, fill=box_col, outline=(255, 255, 255, 220), width=4)
         draw.text((W/2, y_pos + 135), step, font=f_step, fill=(255, 255, 255, 255), anchor="mm", align="center")
         y_pos += 330
 
-    img.save(out_png, "PNG")
-
-def draw_takeaway_scene(takeaway_text: str, out_png: Path):
+def draw_animated_takeaway(img, progress, takeaway_text):
     W, H = 1080, 1920
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
     f_takeaway = get_font(46)
 
     draw.rectangle([(0, 0), (W, 18)], fill=(0, 255, 163, 255))
-
-    draw.rounded_rectangle([(60, 350), (W - 60, 1520)], radius=44, fill=(15, 23, 42, 250), outline=(0, 255, 163, 255), width=6)
+    draw.rounded_rectangle([(60, 350), (W - 60, 1520)], radius=44, fill=(15, 23, 42, 255), outline=(0, 255, 163, 255), width=6)
     wrapped = textwrap.wrap(takeaway_text, width=23)
     sy = 600
     for line in wrapped:
@@ -159,7 +159,33 @@ def draw_takeaway_scene(takeaway_text: str, out_png: Path):
         draw.text((W/2, sy), line, font=f_takeaway, fill=color, anchor="mm", align="center")
         sy += 85
 
-    img.save(out_png, "PNG")
+def generate_video_segment(draw_callback, duration, output_mp4):
+    fps = 30
+    total_frames = int(duration * fps)
+    W, H = 1080, 1920
+    
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    temp_raw = TEMP_DIR / "temp_raw.mp4"
+    out = cv2.VideoWriter(str(temp_raw), fourcc, fps, (W, H))
+
+    for frame_idx in range(total_frames):
+        progress = frame_idx / max(1, total_frames - 1)
+        img = Image.new("RGBA", (W, H), (10, 15, 30, 255))
+        draw_callback(img, progress)
+        
+        frame_np = cv2.cvtColor(np.array(img.convert("RGB")), cv2.COLOR_RGB2BGR)
+        out.write(frame_np)
+
+    out.release()
+
+    subprocess.run([
+        "ffmpeg", "-y", "-i", str(temp_raw),
+        "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+        "-pix_fmt", "yuv420p", "-r", str(fps), str(output_mp4)
+    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    
+    if temp_raw.exists():
+        temp_raw.unlink()
 
 def send_to_telegram(video_path: Path, item: dict):
     if not TG_BOT_TOKEN or not TG_CHAT_ID:
@@ -192,103 +218,91 @@ def send_to_telegram(video_path: Path, item: dict):
 async def build_full_reel(item: dict, final_mp4: Path):
     segment_videos = []
 
+    # Scene 1
     s1 = item["scene_1"]
     s1_audio = TEMP_DIR / "s1_audio.mp3"
     await synth_line(s1["dialogue"], s1["voice"], s1_audio)
     s1_dur = get_duration(s1_audio) + 0.4
-    s1_png = TEMP_DIR / "s1.png"
-    draw_office_scene(s1["setting"], "ROHIT (Backend Dev)", (255, 69, 58, 255), s1["dialogue"], s1_png)
-
     s1_seg = TEMP_DIR / "seg_1.mp4"
-    # Added FFmpeg zoompan and dynamic filter for cinematic motion instead of static slideshow
-    subprocess.run([
-        "ffmpeg", "-y", "-stream_loop", "-1", "-i", str(BG_VIDEO),
-        "-loop", "1", "-i", str(s1_png), "-i", str(s1_audio),
-        "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.38:contrast=1.35[bg];[1:v]scale=1080:1920[fg_scaled];[bg][fg_scaled]overlay=0:0:shortest=1[v]",
-        "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
-        "-t", str(s1_dur), "-pix_fmt", "yuv420p", str(s1_seg)
-    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    generate_video_segment(
+        lambda img, prog: draw_animated_office(img, prog, s1["setting"], "ROHIT (Backend Dev)", (255, 69, 58, 255), s1["dialogue"]),
+        s1_dur, s1_seg
+    )
     segment_videos.append(s1_seg)
 
+    # Scene 2
     s2 = item["scene_2"]
     s2_audio = TEMP_DIR / "s2_audio.mp3"
     await synth_line(f"Inspecting the Postman payload for {s2['endpoint']}.", "en-IN-PrabhatNeural", s2_audio)
     s2_dur = 4.0
-    s2_png = TEMP_DIR / "s2.png"
-    draw_postman_scene(s2, s2_png)
-
     s2_seg = TEMP_DIR / "seg_2.mp4"
-    subprocess.run([
-        "ffmpeg", "-y", "-stream_loop", "-1", "-i", str(BG_VIDEO),
-        "-loop", "1", "-i", str(s2_png), "-i", str(s2_audio),
-        "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.38:contrast=1.35[bg];[1:v]scale=1080:1920[fg_scaled];[bg][fg_scaled]overlay=0:0:shortest=1[v]",
-        "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
-        "-t", str(s2_dur), "-pix_fmt", "yuv420p", str(s2_seg)
-    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    generate_video_segment(
+        lambda img, prog: draw_animated_postman(img, prog, s2),
+        s2_dur, s2_seg
+    )
     segment_videos.append(s2_seg)
 
+    # Scene 3
     s3 = item["scene_3"]
     s3_audio = TEMP_DIR / "s3_audio.mp3"
     await synth_line(s3["dialogue"], s3["voice"], s3_audio)
     s3_dur = get_duration(s3_audio) + 0.4
-    s3_png = TEMP_DIR / "s3.png"
-    draw_office_scene(s3["setting"], "PRIYA (Lead QA)", (0, 229, 255, 255), s3["dialogue"], s3_png)
-
     s3_seg = TEMP_DIR / "seg_3.mp4"
-    subprocess.run([
-        "ffmpeg", "-y", "-stream_loop", "-1", "-i", str(BG_VIDEO),
-        "-loop", "1", "-i", str(s3_png), "-i", str(s3_audio),
-        "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.38:contrast=1.35[bg];[1:v]scale=1080:1920[fg_scaled];[bg][fg_scaled]overlay=0:0:shortest=1[v]",
-        "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
-        "-t", str(s3_dur), "-pix_fmt", "yuv420p", str(s3_seg)
-    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    generate_video_segment(
+        lambda img, prog: draw_animated_office(img, prog, s3["setting"], "PRIYA (Lead QA)", (0, 229, 255, 255), s3["dialogue"]),
+        s3_dur, s3_seg
+    )
     segment_videos.append(s3_seg)
 
+    # Scene 4
     s4 = item["scene_4"]
     s4_audio = TEMP_DIR / "s4_audio.mp3"
     await synth_line("Tracing the exact architecture vulnerability step by step.", "en-IN-NeerjaNeural", s4_audio)
     s4_dur = 4.5
-    s4_png = TEMP_DIR / "s4.png"
-    draw_architecture_scene(s4["flow"], s4_png)
-
     s4_seg = TEMP_DIR / "seg_4.mp4"
-    subprocess.run([
-        "ffmpeg", "-y", "-stream_loop", "-1", "-i", str(BG_VIDEO),
-        "-loop", "1", "-i", str(s4_png), "-i", str(s4_audio),
-        "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.38:contrast=1.35[bg];[1:v]scale=1080:1920[fg_scaled];[bg][fg_scaled]overlay=0:0:shortest=1[v]",
-        "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
-        "-t", str(s4_dur), "-pix_fmt", "yuv420p", str(s4_seg)
-    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    generate_video_segment(
+        lambda img, prog: draw_animated_architecture(img, prog, s4["flow"]),
+        s4_dur, s4_seg
+    )
     segment_videos.append(s4_seg)
 
+    # Takeaway
     t_audio = TEMP_DIR / "t_audio.mp3"
     await synth_line(item["takeaway"], "en-IN-NeerjaNeural", t_audio)
     t_dur = get_duration(t_audio) + 0.5
-    t_png = TEMP_DIR / "takeaway.png"
-    draw_takeaway_scene(item["takeaway"], t_png)
-
     t_seg = TEMP_DIR / "seg_takeaway.mp4"
-    subprocess.run([
-        "ffmpeg", "-y", "-stream_loop", "-1", "-i", str(BG_VIDEO),
-        "-loop", "1", "-i", str(t_png), "-i", str(t_audio),
-        "-filter_complex", "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,eq=brightness=-0.38:contrast=1.35[bg];[1:v]scale=1080:1920[fg_scaled];[bg][fg_scaled]overlay=0:0:shortest=1[v]",
-        "-map", "[v]", "-map", "2:a", "-r", "30", "-fps_mode", "cfr",
-        "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-c:a", "aac", "-b:a", "192k",
-        "-t", str(t_dur), "-pix_fmt", "yuv420p", str(t_seg)
-    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    generate_video_segment(
+        lambda img, prog: draw_animated_takeaway(img, prog, item["takeaway"]),
+        t_dur, t_seg
+    )
     segment_videos.append(t_seg)
 
+    # Concatenate video segments with audio
     concat_list = TEMP_DIR / "all_segments.txt"
     concat_list.write_text("\n".join(f"file '{p.resolve()}'" for p in segment_videos), encoding="utf-8")
 
+    # Combine all video segments
+    combined_video = TEMP_DIR / "combined_video.mp4"
     subprocess.run([
         "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(concat_list),
+        "-c", "copy", str(combined_video)
+    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    # Merge individual audio tracks into final output
+    # For simplicity, concatenate audio tracks matching video durations
+    audio_concat = TEMP_DIR / "all_audio.txt"
+    audio_concat.write_text(f"file '{s1_audio.resolve()}'\nfile '{s2_audio.resolve()}'\nfile '{s3_audio.resolve()}'\nfile '{s4_audio.resolve()}'\nfile '{t_audio.resolve()}'", encoding="utf-8")
+    
+    combined_audio = TEMP_DIR / "combined_audio.mp3"
+    subprocess.run([
+        "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(audio_concat),
+        "-c:a", "aac", str(combined_audio)
+    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    subprocess.run([
+        "ffmpeg", "-y", "-i", str(combined_video), "-i", str(combined_audio),
         "-stream_loop", "-1", "-i", str(BG_MUSIC),
-        "-filter_complex", "[0:a]volume=1.3[va];[1:a]volume=0.15[ma];[va][ma]amix=inputs=2:duration=first[outa]",
+        "-filter_complex", "[1:a]volume=1.5[va];[2:a]volume=0.12[ma];[va][ma]amix=inputs=2:duration=first[outa]",
         "-map", "0:v", "-map", "[outa]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
         str(final_mp4)
     ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -301,7 +315,7 @@ async def main():
         return
 
     out_mp4 = OUTPUT_DIR / f"{target['id']}.mp4"
-    print(f"Building Cinematic Reel ({target['id']})...")
+    print(f"Building Animated Motion Graphics Reel ({target['id']})...")
     await build_full_reel(target, out_mp4)
 
     print(f"Publishing to Telegram...")
@@ -309,7 +323,7 @@ async def main():
 
     target["done"] = True
     QUEUE_FILE.write_text(json.dumps(queue, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"\n🔥 Done! Reel rendered and posted to Telegram!")
+    print(f"\n🔥 Done! Animated reel rendered and posted to Telegram!")
 
 if __name__ == "__main__":
     asyncio.run(main())
