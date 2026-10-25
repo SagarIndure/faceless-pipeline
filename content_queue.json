@@ -256,7 +256,7 @@
     },
     "takeaway": "💡 QA TAKEAWAY:\nParameterized query validation on dynamic ORDER BY clauses.",
     "author": "World Test Organisation",
-    "done": false
+    "done": true
   },
   {
     "id": "reel_008",
